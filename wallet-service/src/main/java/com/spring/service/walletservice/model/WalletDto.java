@@ -11,12 +11,12 @@ public class WalletDto {
 
     private User user;
 
-    private List<Wallet> wallets;
+    private Wallet wallets;
 
     public WalletDto() {
     }
 
-    public WalletDto(int walletId, User user, List<Wallet> wallets) {
+    public WalletDto(int walletId, User user, Wallet wallets) {
         this.walletId = walletId;
         this.user = user;
         this.wallets = wallets;
@@ -38,11 +38,11 @@ public class WalletDto {
         this.user = user;
     }
 
-    public List<Wallet> getWallets() {
+    public Wallet getWallets() {
         return wallets;
     }
 
-    public void setWallets(List<Wallet> wallets) {
+    public void setWallets(Wallet wallets) {
         this.wallets = wallets;
     }
 }

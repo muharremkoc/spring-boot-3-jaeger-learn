@@ -65,21 +65,21 @@ public class WalletServiceImpl implements WalletService{
 
     @Override
     public List<WalletDto> getWallets() {
-        List<Wallet> wallets=walletRepository.findAll();
-        List<WalletDto> walletDtos=new ArrayList<>();
+        List<Wallet> wallets = walletRepository.findAll();
+        List<WalletDto> walletDtos = new ArrayList<>();
 
         wallets.forEach(wallet -> {
-            User user=apiFeignClient.getUser(wallet.getUserId());
-            if (user==null){
-                log.info("User Not Found with ID:{}", user.getId());
-                throw new RuntimeException("User Not Found with ID:"+user.getId());
+            User user = apiFeignClient.getUser(wallet.getUserId());
+            if (user == null) {
+                log.info("User Not Found with ID: {}", wallet.getUserId());
+                throw new RuntimeException("User Not Found with ID: " + wallet.getUserId());
             }
-            WalletDto walletDto=new WalletDto();
+            WalletDto walletDto = new WalletDto();
             walletDto.setUser(user);
-            walletDto.setWallets(walletRepository.findAllByUserId(user.getId()));
+            walletDto.setWallets(wallet);
             walletDtos.add(walletDto);
         });
-        log.info("Get Wallets Successfully");
+        log.info("Get Posts Successfully");
 
         return walletDtos;
     }
